@@ -1,0 +1,42 @@
+{
+  "name": "theme-default",
+  "version": "0.1.0-alpha",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fluxpress/theme-default.git"
+  },
+  "author": "liangpengyv",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fluxpress/theme-default/issues"
+  },
+  "homepage": "https://github.com/fluxpress/theme-default#readme",
+  "description": "",
+  "dependencies": {
+    "@fluxpress/core": "^0.1.0-alpha",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "marked": "^14.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@types/ejs": "^3.1.5",
+    "@types/node": "^22.5.0",
+    "eslint": "^9.9.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.9.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "files": []
+}
