@@ -7,5 +7,5 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": ["fluxpress", "liangpengyv"]
+  "cSpell.words": ["fluxpress", "liangpengyv", "yalc"]
 }
