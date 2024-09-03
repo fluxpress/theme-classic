@@ -1,7 +1,7 @@
 import fluxpress from '@fluxpress/core'
 
 async function main() {
-  console.log(await fluxpress.fetch.getIssues())
+  console.log(await fluxpress.fetchIssues())
 }
 
 main()

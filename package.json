@@ -18,7 +18,7 @@
   "homepage": "https://github.com/fluxpress/theme-default#readme",
   "description": "",
   "dependencies": {
-    "@fluxpress/core": "^0.1.0-alpha",
+    "@fluxpress/core": "^0.1.1-alpha",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "marked": "^14.0.0"
