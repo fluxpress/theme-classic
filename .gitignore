@@ -26,13 +26,16 @@ lerna-debug.log*
 
 # Dependency directories
 node_modules/
+out/
 dist/
 data/
 public/
-out/
+
+# yalc
+yalc.lock
+.yalc/
 
 
 ### Others ###
 .env
-yalc.lock
-.yalc/
+fluxpress.config.js
