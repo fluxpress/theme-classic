@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "module": "ES2020",
-    "moduleResolution": "Node",
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "checkJs": true,
     "outDir": "./out",
     "resolveJsonModule": true,
