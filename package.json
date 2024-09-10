@@ -23,8 +23,7 @@
   "homepage": "https://github.com/fluxpress/theme-default#readme",
   "description": "",
   "dependencies": {
-    "@fluxpress/cli": "^0.1.1-alpha",
-    "@fluxpress/core": "^0.1.4-alpha",
+    "@fluxpress/core": "^0.1.5-alpha",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "fs-extra": "^11.2.0",
@@ -32,6 +31,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@fluxpress/cli": "^0.1.2-alpha",
     "@types/ejs": "^3.1.5",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.5.0",
