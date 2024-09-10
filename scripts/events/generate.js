@@ -10,6 +10,19 @@ import fs from 'fs-extra'
 import { marked } from 'marked'
 import path from 'node:path'
 
+export default function (fluxpress) {
+  fluxpress.on('generate', async () => {
+    /** @type import('@fluxpress/core').DataIssues */
+    const dataIssues = await loadDataFromFile(DATA_PATH__ISSUES)
+
+    await generatePosts(dataIssues)
+    await generatePage(dataIssues)
+    await generateArchives(dataIssues)
+    await generateCategories(dataIssues)
+    await generateTags(dataIssues)
+  })
+}
+
 const THEME_LAYOUT_PATH = path.join(await readThemePath(), 'layout')
 
 /** @type import('../../index.d.ts').ThemeConfig */
@@ -182,17 +195,4 @@ async function generateTags(dataIssues) {
       tags: labelsOfExistIssues,
     },
   )
-}
-
-export default function (fluxpress) {
-  fluxpress.on('generate', async () => {
-    /** @type import('@fluxpress/core').DataIssues */
-    const dataIssues = await loadDataFromFile(DATA_PATH__ISSUES)
-
-    await generatePosts(dataIssues)
-    await generatePage(dataIssues)
-    await generateArchives(dataIssues)
-    await generateCategories(dataIssues)
-    await generateTags(dataIssues)
-  })
 }
