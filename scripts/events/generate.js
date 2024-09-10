@@ -24,6 +24,8 @@ export default function (fluxpress) {
     await generateArchives(dataIssues)
     await generateCategories(dataIssues)
     await generateTags(dataIssues)
+    await generateAbout()
+    await generate404()
 
     await fs.copy(THEME_SOURCE_PATH, OUTPUT_PATH)
   })
@@ -40,7 +42,7 @@ async function generateHtmlFromTemplate(
 ) {
   const htmlContent = await ejs.renderFile(templatePath, data)
   const html = await ejs.renderFile(
-    path.join(THEME_LAYOUT_PATH, 'index.ejs'),
+    path.join(THEME_LAYOUT_PATH, 'html-container.ejs'),
     {
       title: headTitle,
       content: htmlContent,
@@ -220,5 +222,23 @@ async function generateTags(dataIssues) {
       tags: labelsOfExistIssues,
     },
     '标签',
+  )
+}
+
+async function generateAbout() {
+  await generateHtmlFromTemplate(
+    path.join(THEME_LAYOUT_PATH, 'about', 'index.ejs'),
+    path.join(OUTPUT_PATH, 'about', 'index.html'),
+    {},
+    '关于',
+  )
+}
+
+async function generate404() {
+  await generateHtmlFromTemplate(
+    path.join(THEME_LAYOUT_PATH, '404.ejs'),
+    path.join(OUTPUT_PATH, '404.html'),
+    {},
+    '404 Not Fount',
   )
 }
