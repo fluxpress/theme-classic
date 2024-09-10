@@ -1,1 +1,1 @@
-# @fluxpress/theme-default
+# @fluxpress/theme-classic

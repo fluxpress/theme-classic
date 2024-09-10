@@ -1,5 +1,5 @@
 {
-  "name": "theme-default",
+  "name": "theme-classic",
   "version": "0.1.0-alpha",
   "engines": {
     "node": ">=20.9.0"
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fluxpress/theme-default.git"
+    "url": "git+https://github.com/fluxpress/theme-classic.git"
   },
   "author": "liangpengyv",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fluxpress/theme-default/issues"
+    "url": "https://github.com/fluxpress/theme-classic/issues"
   },
-  "homepage": "https://github.com/fluxpress/theme-default#readme",
+  "homepage": "https://github.com/fluxpress/theme-classic#readme",
   "description": "",
   "dependencies": {
     "@fluxpress/core": "^0.1.5-alpha",
