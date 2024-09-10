@@ -1,5 +1,4 @@
 import {
-  DATA_PATH__ISSUES,
   loadDataFromFile,
   OUTPUT_PATH,
   readFluxPressThemeConfig,
@@ -16,22 +15,25 @@ const THEME_SOURCE_PATH = path.join(THEME_PATH, 'source')
 
 export default function (fluxpress) {
   fluxpress.on('generate', async () => {
-    /** @type import('@fluxpress/core').DataIssues */
-    const dataIssues = await loadDataFromFile(DATA_PATH__ISSUES)
+    const data_issues = await loadDataFromFile('issues')
+    await generatePosts(data_issues)
+    await generatePage(data_issues)
+    await generateArchives(data_issues)
+    await generateCategories(data_issues)
+    await generateTags(data_issues)
 
-    await generatePosts(dataIssues)
-    await generatePage(dataIssues)
-    await generateArchives(dataIssues)
-    await generateCategories(dataIssues)
-    await generateTags(dataIssues)
-    await generateAbout()
+    const data_users = await loadDataFromFile('users')
+    await generateAbout(data_users)
+
     await generate404()
 
     await fs.copy(THEME_SOURCE_PATH, OUTPUT_PATH)
   })
 }
 
-/** @type import('../../index.d.ts').ThemeConfig */
+/**
+ * @type import('../../index.d.ts').ThemeConfig
+ */
 const themeConfig = await readFluxPressThemeConfig()
 
 async function generateHtmlFromTemplate(
@@ -54,8 +56,8 @@ async function generateHtmlFromTemplate(
   await fs.outputFile(outputPath, html)
 }
 
-async function generatePosts(dataIssues) {
-  const { issues } = dataIssues
+async function generatePosts(data_issues) {
+  const { issues } = data_issues
 
   for (const issue of issues) {
     await generateHtmlFromTemplate(
@@ -75,8 +77,8 @@ async function generatePosts(dataIssues) {
   }
 }
 
-async function generatePage(dataIssues) {
-  const { issues } = dataIssues
+async function generatePage(data_issues) {
+  const { issues } = data_issues
 
   const pageCount = Math.ceil(issues.length / themeConfig.per_page)
   for (let i = 0; i < pageCount; i++) {
@@ -98,8 +100,8 @@ async function generatePage(dataIssues) {
   }
 }
 
-async function generateArchives(dataIssues) {
-  const { issues } = dataIssues
+async function generateArchives(data_issues) {
+  const { issues } = data_issues
 
   const postsByMonthMap = new Map()
   issues.forEach((issue) => {
@@ -122,8 +124,8 @@ async function generateArchives(dataIssues) {
   )
 }
 
-async function generateCategories(dataIssues) {
-  const { issues, milestones } = dataIssues
+async function generateCategories(data_issues) {
+  const { issues, milestones } = data_issues
   const milestonesOfExistIssues = []
 
   for (const milestone of milestones) {
@@ -176,8 +178,8 @@ async function generateCategories(dataIssues) {
   )
 }
 
-async function generateTags(dataIssues) {
-  const { issues, labels } = dataIssues
+async function generateTags(data_issues) {
+  const { issues, labels } = data_issues
   const labelsOfExistIssues = []
 
   for (const label of labels) {
@@ -225,11 +227,14 @@ async function generateTags(dataIssues) {
   )
 }
 
-async function generateAbout() {
+async function generateAbout(data_users) {
+  const { user } = data_users
   await generateHtmlFromTemplate(
     path.join(THEME_LAYOUT_PATH, 'about', 'index.ejs'),
     path.join(OUTPUT_PATH, 'about', 'index.html'),
-    {},
+    {
+      user,
+    },
     '关于',
   )
 }
