@@ -10,6 +10,10 @@ import fs from 'fs-extra'
 import { marked } from 'marked'
 import path from 'node:path'
 
+const THEME_PATH = await readThemePath()
+const THEME_LAYOUT_PATH = path.join(THEME_PATH, 'layout')
+const THEME_SOURCE_PATH = path.join(THEME_PATH, 'source')
+
 export default function (fluxpress) {
   fluxpress.on('generate', async () => {
     /** @type import('@fluxpress/core').DataIssues */
@@ -20,16 +24,31 @@ export default function (fluxpress) {
     await generateArchives(dataIssues)
     await generateCategories(dataIssues)
     await generateTags(dataIssues)
+
+    await fs.copy(THEME_SOURCE_PATH, OUTPUT_PATH)
   })
 }
-
-const THEME_LAYOUT_PATH = path.join(await readThemePath(), 'layout')
 
 /** @type import('../../index.d.ts').ThemeConfig */
 const themeConfig = await readFluxPressThemeConfig()
 
-async function generateHtmlFromTemplate(templatePath, outputPath, data) {
-  const html = await ejs.renderFile(templatePath, data)
+async function generateHtmlFromTemplate(
+  templatePath,
+  outputPath,
+  data,
+  headTitle,
+) {
+  const htmlContent = await ejs.renderFile(templatePath, data)
+  const html = await ejs.renderFile(
+    path.join(THEME_LAYOUT_PATH, 'index.ejs'),
+    {
+      title: headTitle,
+      content: htmlContent,
+    },
+    {
+      escape: null,
+    },
+  )
   await fs.outputFile(outputPath, html)
 }
 
@@ -49,6 +68,7 @@ async function generatePosts(dataIssues) {
           content: marked(comment.body ?? ''),
         })),
       },
+      issue.title,
     )
   }
 }
@@ -71,6 +91,7 @@ async function generatePage(dataIssues) {
         pageCount,
         currentPage: i + 1,
       },
+      `首页${i === 0 ? '' : ' - ' + (i + 1)}`,
     )
   }
 }
@@ -95,6 +116,7 @@ async function generateArchives(dataIssues) {
     {
       postsByMonthMap,
     },
+    '归档',
   )
 }
 
@@ -137,6 +159,7 @@ async function generateCategories(dataIssues) {
           pageCount,
           currentPage: i + 1,
         },
+        `分类 - ${milestone.title}`,
       )
     }
   }
@@ -147,6 +170,7 @@ async function generateCategories(dataIssues) {
     {
       categories: milestonesOfExistIssues,
     },
+    '分类',
   )
 }
 
@@ -184,6 +208,7 @@ async function generateTags(dataIssues) {
           pageCount,
           currentPage: i + 1,
         },
+        `标签 - ${label.title}`,
       )
     }
   }
@@ -194,5 +219,6 @@ async function generateTags(dataIssues) {
     {
       tags: labelsOfExistIssues,
     },
+    '标签',
   )
 }
