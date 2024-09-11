@@ -1,29 +1,46 @@
 <%- include('../_partials/navbar') %>
 
-<% for( let i = 0; i < posts.length; i++ ) { %>
-<div>
-  <a href="/posts/<%= posts[i].id %>"><%= posts[i].title %></a>
-</div>
-<% } %>
-
-<div style="display: flex">
-  <% if (currentPage !== 1) { %>
-  <div>
-    <% if (currentPage === 2) { %>
-    <a href="/">上一页</a>
-    <% } else { %>
-    <a href="/page/<%= currentPage - 1 %>">上一页</a>
+<main>
+  <section>
+    <% for( let i = 0; i < posts.length; i++ ) { %>
+    <div>
+      <a href="/posts/<%= posts[i].id %>">
+        <div class="row row-lock-direction row-center row-between">
+          <span class="column">
+            <%= posts[i].title %>
+          </span>
+          <span class="column">
+            <%= posts[i].created_at.substr(0, 10) %>
+          </span>
+        </div>
+      </a>
+    </div>
     <% } %>
-  </div>
-  <% } %>
+  </section>
 
-  <div>
-    <%= currentPage %>
-    /
-    <%= pageCount %>
-  </div>
+  <section>
+    <div class="row row-center row-lock-direction">
+      <div class="column text-right">
+        <% if (currentPage !== 1) { %>
+          <% if (currentPage === 2) { %>
+            <a class="button button-clear" href="/">上一页</a>
+          <% } else { %>
+            <a class="button button-clear" href="/page/<%= currentPage - 1 %>">上一页</a>
+          <% } %>
+        <% } %>
+      </div>
 
-  <% if (currentPage !== pageCount) { %>
-  <div><a href="/page/<%= currentPage + 1 %>">下一页</a></div>
-  <% } %>
-</div>
+      <div class="column text-center">
+        <%= currentPage %>
+        /
+        <%= pageCount %>
+      </div>
+      
+      <div class="column">
+        <% if (currentPage !== pageCount) { %>
+          <a class="button button-clear" href="/page/<%= currentPage + 1 %>">下一页</a>
+        <% } %>
+      </div>
+    </div>
+  </section>
+</main>
