@@ -89,6 +89,9 @@ async function generatePosts(data_issues) {
           username: comment.user.login,
           content: md.render(comment.body ?? ''),
         })),
+        category: issue.milestone,
+        tags: issue.labels,
+        createdAt: issue.created_at,
       },
       issue.title,
     )

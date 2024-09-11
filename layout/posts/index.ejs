@@ -3,6 +3,26 @@
 <main>
   <section>
     <div class="post-title"><%= title %></div>
+    <div class="post-info">
+      <% if (category?.title) { %>
+        <span class="post-info-item">
+          <span>分类：</span>
+          <span><%= category?.title %></span>
+        </span>
+      <% } %>
+      <% if (tags.length > 0) { %>
+        <span class="post-info-item">
+          <span>标签：</span>
+          <% tags.map(tag => tag.name).forEach(tagName => { %>
+            <span><%= tagName %></span>
+          <% }) %>
+        </span>
+      <% } %>
+      <span class="post-info-item">
+        <span>创建于：</span>
+        <span><%= createdAt.substr(0, 10) %></span>
+      </span>
+    </div>
     <div><%- content %></div>
   </section>
   

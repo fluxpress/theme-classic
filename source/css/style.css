@@ -110,6 +110,14 @@ ol > li > p {
   font-weight: bold;
 }
 
+.post-info {
+  font-size: 1.2rem;
+  display: flex;
+  gap: 2.4rem;
+  margin: 1.2rem 0;
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .type-label {
   font-size: 1.4rem;
   margin-left: 4rem;
