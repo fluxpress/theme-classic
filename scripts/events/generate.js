@@ -92,8 +92,11 @@ async function generatePage(data_issues) {
           themeConfig.per_page * i,
           themeConfig.per_page * (i + 1),
         ),
-        pageCount,
-        currentPage: i + 1,
+        pagination: {
+          pageCount,
+          currentPage: i + 1,
+          urlPath: '/',
+        },
       },
       `首页${i === 0 ? '' : ' - ' + (i + 1)}`,
     )
@@ -160,8 +163,11 @@ async function generateCategories(data_issues) {
             themeConfig.per_page * (i + 1),
           ),
           category: milestone,
-          pageCount,
-          currentPage: i + 1,
+          pagination: {
+            pageCount,
+            currentPage: i + 1,
+            urlPath: `/categories/${milestone.id}/`,
+          },
         },
         `分类 - ${milestone.title}`,
       )
@@ -209,8 +215,11 @@ async function generateTags(data_issues) {
             themeConfig.per_page * (i + 1),
           ),
           tag: label,
-          pageCount,
-          currentPage: i + 1,
+          pagination: {
+            pageCount,
+            currentPage: i + 1,
+            urlPath: `/tags/${label.id}/`,
+          },
         },
         `标签 - ${label.title}`,
       )

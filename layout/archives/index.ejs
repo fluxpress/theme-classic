@@ -1,14 +1,23 @@
-<%- include('../_partials/navbar') %>
+<%- include('../_partials/navbar', { currentNav: 'archives' }) %>
 
 <main>
   <section>
     <% Array.from(postsByMonthMap.entries()).forEach(([month, posts]) => { %>
     <details open>
-      <summary><%= month %></summary>
+      <summary>
+        <span>&nbsp;&nbsp;<%= month %></span>
+      </summary>
       <% for( let i = 0; i < posts.length; i++ ) { %>
-      <div>
-        <a href="/posts/<%= posts[i].id %>"><%= posts[i].title %></a>
-      </div>
+        <a class="post-item" href="/posts/<%= posts[i].id %>">
+          <div class="clearfix">
+            <span class="float-left">
+              <%= posts[i].title %>
+            </span>
+            <span class="float-right">
+              <%= posts[i].created_at.substr(0, 10) %>
+            </span>
+          </div>
+        </a>
       <% } %>
     </details>
     <% }) %>

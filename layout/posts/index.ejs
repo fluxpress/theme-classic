@@ -1,4 +1,4 @@
-<%- include('../_partials/navbar') %>
+<%- include('../_partials/navbar', { currentNav: '' }) %>
 
 <main>
   <section>
@@ -7,18 +7,25 @@
   </section>
   
   <section>
-    <div>
-      <% comments.forEach(comment => { %>
+    <% if (comments.length > 0) { %>
       <div>
-        <img
-          src="<%= comment.avatar %>"
-          alt="user avatar"
-          style="width: 20px; height: 20px"
-        />
-        <span><%= comment.username %></span>
-        <p><%- comment.content %></p>
+        <% comments.forEach(comment => { %>
+        <div>
+          <img
+            src="<%= comment.avatar %>"
+            alt="user avatar"
+            style="width: 20px; height: 20px"
+          />
+          <span><%= comment.username %></span>
+          <p><%- comment.content %></p>
+        </div>
+        <% }) %>
       </div>
-      <% }) %>
-    </div>
+    <% } else { %>
+      <div>
+        没有评论。。。
+      </div>
+    <% } %>
+     
   </section>
 </main>

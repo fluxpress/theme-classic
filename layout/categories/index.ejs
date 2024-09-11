@@ -1,9 +1,11 @@
-<%- include('../_partials/navbar') %>
+<%- include('../_partials/navbar', { currentNav: 'categories' }) %>
 
 <main>
   <section>
-    <% categories.forEach(category => { %>
-    <a href="/categories/<%= category.id %>"><%= category.title %></a>
-    <% }) %>
+    <div class="type-cloud">
+      <% categories.forEach(category => { %>
+        <a class="button button-outline button-large button-no-transform" href="/categories/<%= category.id %>"><%= category.title %></a>
+      <% }) %>
+    </div>
   </section>
 </main>

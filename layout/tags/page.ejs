@@ -1,39 +1,24 @@
-<%- include('../_partials/navbar') %>
+<%- include('../_partials/navbar', { currentNav: '' }) %>
 
 <main>
   <p class="type-label">标签：<%= tag.name %></p>
 
   <section>
     <% for( let i = 0; i < posts.length; i++ ) { %>
-      <div>
-        <a href="/posts/<%= posts[i].id %>"><%= posts[i].title %></a>
-      </div>
+      <a class="post-item" href="/posts/<%= posts[i].id %>">
+        <div class="clearfix">
+          <span class="float-left">
+            <%= posts[i].title %>
+          </span>
+          <span class="float-right">
+            <%= posts[i].created_at.substr(0, 10) %>
+          </span>
+        </div>
+      </a>
     <% } %>
   </section>
 
   <section>
-    <div class="row row-center row-lock-direction">
-      <div class="column text-right">
-        <% if (currentPage !== 1) { %>
-          <% if (currentPage === 2) { %>
-            <a class="button button-clear" href="/tags/<%= tag.id %>">上一页</a>
-          <% } else { %>
-            <a class="button button-clear" href="/tags/<%= tag.id %>/page/<%= currentPage - 1 %>">上一页</a>
-          <% } %>
-        <% } %>
-      </div>
-    
-      <div class="column text-center">
-        <%= currentPage %>
-        /
-        <%= pageCount %>
-      </div>
-    
-      <div class="column">
-        <% if (currentPage !== pageCount) { %>
-          <a class="button button-clear" href="/tags/<%= tag.id %>/page/<%= currentPage + 1 %>">下一页</a>
-        <% } %>
-      </div>
-    </div>
+    <%- include('../_widgets/pagination', { ...pagination }) %>
   </section>
 </main>
