@@ -3,7 +3,7 @@ main {
   margin: 8rem auto;
 }
 
-section {
+section:not(.footnotes) {
   margin: 2.4rem;
   padding: 1.6rem 2rem;
   border-radius: 8px;
@@ -11,12 +11,73 @@ section {
 }
 
 summary {
+  display: flex;
+  align-items: start;
+  outline: none;
+  list-style: none;
+  user-select: none;
   cursor: pointer;
-  margin: 1.6rem 0 0.8rem 0.8rem;
+  margin-bottom: 1.6rem;
+}
+
+summary > h1,
+summary > h2,
+summary > h3,
+summary > h4,
+summary > h5,
+summary > h6 {
+  display: inline-block;
+  margin: 0;
+}
+
+details > *:not(summary) {
+  margin-top: 0;
+  margin-bottom: 1.6rem;
+  margin-left: 2rem;
+}
+
+.details-marker::before {
+  content: '▶︎';
+  display: inline-block;
+  margin-right: 0.5ch;
+  flex-shrink: 0;
+  transition: 0.3s;
+}
+
+details[open] > summary {
+  margin-bottom: 0.4rem;
+}
+
+details[open] > summary .details-marker::before {
+  transform: rotate(90deg);
+  transform-origin: 40% 45% 0;
+}
+
+ul > li > p {
+  display: inline;
+}
+
+ul > li.task-list-item {
+  list-style-type: none;
+}
+
+ol > li > p {
+  display: inline;
+}
+
+.table-of-contents {
+  margin-top: 0.8rem;
+  margin-bottom: 2.4rem;
+
+  ul {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }
 
 .navbar {
   position: fixed;
+  z-index: 999;
   top: 0;
   left: 0;
   right: 0;
@@ -41,6 +102,12 @@ summary {
   display: block;
   padding: 0.4rem 0.8rem;
   border-radius: 4px;
+  margin-bottom: 0;
+}
+
+.post-title {
+  font-size: 2.4rem;
+  font-weight: bold;
 }
 
 .type-label {

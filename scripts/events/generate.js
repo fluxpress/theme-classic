@@ -4,10 +4,28 @@ import {
   readFluxPressThemeConfig,
   readThemePath,
 } from '@fluxpress/core'
+import path from 'node:path'
 import ejs from 'ejs'
 import fs from 'fs-extra'
-import { marked } from 'marked'
-import path from 'node:path'
+import markdownIt from 'markdown-it'
+import markdownItFootnote from 'markdown-it-footnote'
+import markdownItHighlightJs from 'markdown-it-highlightjs'
+import markdownItTaskLists from 'markdown-it-task-lists'
+import markdownItCollapsible from 'markdown-it-collapsible'
+import markdownItFrontMatter from 'markdown-it-front-matter'
+import markdownItAnchor from 'markdown-it-anchor'
+import markdownItTableOfContents from 'markdown-it-table-of-contents'
+
+const md = markdownIt()
+  .use(markdownItFootnote)
+  .use(markdownItHighlightJs, { inline: true })
+  .use(markdownItTaskLists)
+  .use(markdownItCollapsible)
+  .use(markdownItFrontMatter, (fm) => {
+    console.log(fm)
+  })
+  .use(markdownItAnchor)
+  .use(markdownItTableOfContents)
 
 const THEME_PATH = await readThemePath()
 const THEME_LAYOUT_PATH = path.join(THEME_PATH, 'layout')
@@ -65,11 +83,11 @@ async function generatePosts(data_issues) {
       path.join(OUTPUT_PATH, 'posts', `${issue.id}`, 'index.html'),
       {
         title: issue.title,
-        content: marked(issue.body ?? ''),
+        content: md.render(issue.body ?? ''),
         comments: issue.comments_list.map((comment) => ({
           avatar: comment.user.avatar_url,
           username: comment.user.login,
-          content: marked(comment.body ?? ''),
+          content: md.render(comment.body ?? ''),
         })),
       },
       issue.title,
