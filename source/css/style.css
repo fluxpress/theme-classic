@@ -55,3 +55,14 @@ summary {
   gap: 1.6rem 2.4rem;
   justify-content: center;
 }
+
+.pagination {
+  margin-top: -1.6rem;
+  margin-bottom: -0.8rem;
+
+  .page-count {
+    font-size: 1.5rem;
+    height: 3.6rem;
+    line-height: 3.6rem;
+  }
+}

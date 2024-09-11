@@ -1,4 +1,4 @@
-<div class="row row-center row-lock-direction">
+<div class="pagination row row-bottom row-lock-direction">
   <div class="column text-right">
     <% if (currentPage !== 1) { %>
       <% if (currentPage === 2) { %>
@@ -10,9 +10,11 @@
   </div>
 
   <div class="column text-center">
-    <%= currentPage %>
-    /
-    <%= pageCount %>
+    <span class="page-count">
+      <%= currentPage %>
+      /
+      <%= pageCount %>
+    </span>
   </div>
   
   <div class="column">

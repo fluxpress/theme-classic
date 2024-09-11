@@ -1,4 +1,4 @@
-<%- include('../_partials/navbar', { currentNav: pagination.currentPage === 1 ? 'home' : '' }) %>
+<%- include('../_partials/navbar', { currentNav: '' }) %>
 
 <main>
   <section>
@@ -17,6 +17,6 @@
   </section>
 
   <section>
-    <%- include('../_widgets/pagination', {...pagination}) %>
+    <%- include('../_widgets/pagination', { ...pagination }) %>
   </section>
 </main>
