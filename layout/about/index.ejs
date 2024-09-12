@@ -1,11 +1,8 @@
 <%- include('../_partials/navbar', { currentNav: 'about' }) %>
 
 <main>
-  <section>
-    <h2>关于</h2>
-
-    <img src="<%= user.avatar_url %>" alt="<%= user.name || user.login %>" />
-    <p><%= user.name || user.login %></p>
+  <section class="text-center">
+    <%= user.name || user.login %>
   </section>
 </main>
 
