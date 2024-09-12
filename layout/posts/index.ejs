@@ -26,23 +26,24 @@
     <div><%- content %></div>
   </section>
   
-  <section>
+  <section class="post-comment">
+    <div class="comment-title">评论</div>
     <% if (comments.length > 0) { %>
-      <div>
-        <% comments.forEach(comment => { %>
-        <div>
+      <% comments.forEach(comment => { %>
+      <div class="comment-item">
+        <div class="row row-center row-lock-direction">
           <img
+            class="avatar"
             src="<%= comment.avatar %>"
             alt="user avatar"
-            style="width: 20px; height: 20px"
           />
-          <span><%= comment.username %></span>
-          <p><%- comment.content %></p>
+          <span class="column"><%= comment.username %></span>
         </div>
-        <% }) %>
+        <p><%- comment.content %></p>
       </div>
+      <% }) %>
     <% } else { %>
-      <div>
+      <div class="comment-none text-center">
         没有评论。。。
       </div>
     <% } %>

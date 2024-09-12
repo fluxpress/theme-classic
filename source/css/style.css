@@ -111,11 +111,32 @@ ol > li > p {
 }
 
 .post-info {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   display: flex;
   gap: 2.4rem;
   margin: 1.2rem 0;
   color: rgba(0, 0, 0, 0.5);
+}
+
+.post-comment {
+  > .comment-title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  > .comment-item {
+    margin-top: 1.6rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    .avatar {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+  }
+
+  > .comment-none {
+    margin: 2.4rem 0;
+  }
 }
 
 .type-label {
@@ -143,6 +164,5 @@ ol > li > p {
 }
 
 .footer {
-  text-align: center;
   font-size: 1.4rem;
 }
