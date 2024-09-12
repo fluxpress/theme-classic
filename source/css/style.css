@@ -141,3 +141,8 @@ ol > li > p {
     line-height: 3.6rem;
   }
 }
+
+.footer {
+  text-align: center;
+  font-size: 1.4rem;
+}
