@@ -1,5 +1,5 @@
 {
-  "name": "theme-classic",
+  "name": "@fluxpress/theme-classic",
   "version": "0.1.0-alpha",
   "engines": {
     "node": ">=20.9.0"
@@ -61,5 +61,11 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "files": []
+  "files": [
+    "layout/",
+    "scripts",
+    "source",
+    "fluxpress.config.classic.js",
+    "index.d.ts"
+  ]
 }
