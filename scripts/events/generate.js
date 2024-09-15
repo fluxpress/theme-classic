@@ -22,7 +22,7 @@ const md = markdownIt()
   .use(markdownItTaskLists)
   .use(markdownItCollapsible)
   .use(markdownItFrontMatter, (fm) => {
-    console.log(fm)
+    // console.log(fm)
   })
   .use(markdownItAnchor)
   .use(markdownItTableOfContents)
