@@ -2,7 +2,7 @@
  * @type import('./index.d.ts').ThemeConfig
  */
 export default {
-  need_data: ['issues', 'users'],
+  need_data: ['issues'],
   site: {
     lang: 'zh',
     title: 'FluxPress',

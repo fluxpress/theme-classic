@@ -40,9 +40,7 @@ export default function (fluxpress) {
     await generateCategories(data_issues)
     await generateTags(data_issues)
 
-    const data_users = await loadDataFromFile('users')
-    await generateAbout(data_users)
-
+    await generateAbout()
     await generate404()
 
     await fs.copy(THEME_SOURCE_PATH, OUTPUT_PATH)
@@ -265,14 +263,13 @@ async function generateTags(data_issues) {
   )
 }
 
-async function generateAbout(data_users) {
-  const { user } = data_users
+async function generateAbout() {
   await generateHtmlFromTemplate(
     path.join(THEME_LAYOUT_PATH, 'about', 'index.ejs'),
     path.join(OUTPUT_PATH, 'about', 'index.html'),
     {
       siteTitle: themeConfig.site.title,
-      user,
+      siteAuthor: themeConfig.site.author,
     },
     '关于',
   )
