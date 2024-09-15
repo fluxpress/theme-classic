@@ -14,6 +14,6 @@ export default () => {
   gulp.watch('public/**/*').on('change', bs.reload)
 
   gulp
-    .watch(['layout/**/*', 'source/**/*'])
+    .watch(['layout/**/*', 'source/**/*', 'fluxpress.config.classic.js'])
     .on('change', shell.task('npm run generate'))
 }

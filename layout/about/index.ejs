@@ -1,9 +1,7 @@
-<%- include('../_partials/navbar', { currentNav: 'about' }) %>
+<%- include('../_partials/navbar', { siteTitle, currentNav: 'about' }) %>
 
 <main>
   <section class="text-center">
     <%= user.name || user.login %>
   </section>
 </main>
-
-<%- include('../_partials/footer') %>

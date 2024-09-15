@@ -1,7 +1,9 @@
 <div class="footer text-center">
   <p>
-    Copyright © 2015-2024 By
-    <a href="/about">LaoLiang</a>
+    Copyright © <%= site.copyright %> By
+    <a href="/about"><%= site.author %></a>
   </p>
-  <p><a href="http://beian.miit.gov.cn/">蜀ICP备18017114号-1</a></p>
+  <% if (site.ipc) { %>
+    <p><a href="http://beian.miit.gov.cn/"><%= site.ipc %></a></p>
+  <% } %>
 </div>

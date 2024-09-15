@@ -60,12 +60,13 @@ async function generateHtmlFromTemplate(
   data,
   headTitle,
 ) {
-  const htmlContent = await ejs.renderFile(templatePath, data)
+  const bodyContent = await ejs.renderFile(templatePath, data)
   const html = await ejs.renderFile(
     path.join(THEME_LAYOUT_PATH, 'html-container.ejs'),
     {
-      title: headTitle,
-      content: htmlContent,
+      site: { ...themeConfig.site },
+      headTitle,
+      bodyContent,
     },
     {
       escape: null,
@@ -82,6 +83,7 @@ async function generatePosts(data_issues) {
       path.join(THEME_LAYOUT_PATH, 'posts', 'index.ejs'),
       path.join(OUTPUT_PATH, 'posts', `${issue.id}`, 'index.html'),
       {
+        siteTitle: themeConfig.site.title,
         title: issue.title,
         content: md.render(issue.body ?? ''),
         comments: issue.comments_list.map((comment) => ({
@@ -109,6 +111,7 @@ async function generatePage(data_issues) {
         ? path.join(OUTPUT_PATH, 'index.html')
         : path.join(OUTPUT_PATH, 'page', `${i + 1}`, 'index.html'),
       {
+        siteTitle: themeConfig.site.title,
         posts: issues.slice(
           themeConfig.per_page * i,
           themeConfig.per_page * (i + 1),
@@ -142,6 +145,7 @@ async function generateArchives(data_issues) {
     path.join(THEME_LAYOUT_PATH, 'archives', 'index.ejs'),
     path.join(OUTPUT_PATH, 'archives', 'index.html'),
     {
+      siteTitle: themeConfig.site.title,
       postsByMonthMap,
     },
     '归档',
@@ -179,6 +183,7 @@ async function generateCategories(data_issues) {
               'index.html',
             ),
         {
+          siteTitle: themeConfig.site.title,
           posts: issuesOfMilestone.slice(
             themeConfig.per_page * i,
             themeConfig.per_page * (i + 1),
@@ -199,6 +204,7 @@ async function generateCategories(data_issues) {
     path.join(THEME_LAYOUT_PATH, 'categories', 'index.ejs'),
     path.join(OUTPUT_PATH, 'categories', 'index.html'),
     {
+      siteTitle: themeConfig.site.title,
       categories: milestonesOfExistIssues,
     },
     '分类',
@@ -231,6 +237,7 @@ async function generateTags(data_issues) {
               'index.html',
             ),
         {
+          siteTitle: themeConfig.site.title,
           posts: issuesOfLabel.slice(
             themeConfig.per_page * i,
             themeConfig.per_page * (i + 1),
@@ -251,6 +258,7 @@ async function generateTags(data_issues) {
     path.join(THEME_LAYOUT_PATH, 'tags', 'index.ejs'),
     path.join(OUTPUT_PATH, 'tags', 'index.html'),
     {
+      siteTitle: themeConfig.site.title,
       tags: labelsOfExistIssues,
     },
     '标签',
@@ -263,6 +271,7 @@ async function generateAbout(data_users) {
     path.join(THEME_LAYOUT_PATH, 'about', 'index.ejs'),
     path.join(OUTPUT_PATH, 'about', 'index.html'),
     {
+      siteTitle: themeConfig.site.title,
       user,
     },
     '关于',
@@ -273,7 +282,9 @@ async function generate404() {
   await generateHtmlFromTemplate(
     path.join(THEME_LAYOUT_PATH, '404.ejs'),
     path.join(OUTPUT_PATH, '404.html'),
-    {},
+    {
+      siteTitle: themeConfig.site.title,
+    },
     '404 Not Fount',
   )
 }
