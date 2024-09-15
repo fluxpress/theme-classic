@@ -1,28 +1,17 @@
 {
   "name": "@fluxpress/theme-classic",
-  "version": "0.1.0-alpha",
+  "version": "0.1.1-alpha",
   "engines": {
     "node": ">=20.9.0"
   },
-  "main": "index.js",
   "type": "module",
+  "main": "index.js",
   "scripts": {
     "dev": "gulp",
     "fetch": "NODE_ENV=development fluxpress fetch",
     "generate": "NODE_ENV=development fluxpress generate",
     "preview": "NODE_ENV=development fluxpress preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fluxpress/theme-classic.git"
-  },
-  "author": "liangpengyv",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/fluxpress/theme-classic/issues"
-  },
-  "homepage": "https://github.com/fluxpress/theme-classic#readme",
-  "description": "",
   "dependencies": {
     "@fluxpress/core": "^0.1.7-alpha",
     "dotenv": "^16.4.5",
@@ -67,5 +56,16 @@
     "source",
     "fluxpress.config.classic.js",
     "index.d.ts"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fluxpress/theme-classic.git"
+  },
+  "author": "liangpengyv",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fluxpress/theme-classic/issues"
+  },
+  "homepage": "https://github.com/fluxpress/theme-classic#readme",
+  "description": ""
 }
