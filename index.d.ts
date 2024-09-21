@@ -1,4 +1,4 @@
-import { type ThemeConfigBase } from '@fluxpress/core'
+import { type ThemeConfigBase } from 'fluxpress'
 
 export interface ThemeConfig extends ThemeConfigBase {
   site: {

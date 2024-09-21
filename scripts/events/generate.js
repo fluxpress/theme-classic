@@ -3,7 +3,7 @@ import {
   OUTPUT_PATH,
   readFluxPressThemeConfig,
   readThemePath,
-} from '@fluxpress/core'
+} from 'fluxpress'
 import path from 'node:path'
 import ejs from 'ejs'
 import fs from 'fs-extra'
