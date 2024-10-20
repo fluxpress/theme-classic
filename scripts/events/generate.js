@@ -102,12 +102,26 @@ async function generatePage(data_issues) {
   const { issues } = data_issues
 
   const pageCount = Math.ceil(issues.length / themeConfig.per_page)
-  for (let i = 0; i < pageCount; i++) {
+
+  await generateHtmlFromTemplate(
+    path.join(THEME_LAYOUT_PATH, 'page', 'index.ejs'),
+    path.join(OUTPUT_PATH, 'index.html'),
+    {
+      siteTitle: themeConfig.site.title,
+      posts: issues.slice(0, themeConfig.per_page),
+      pagination: {
+        pageCount,
+        currentPage: 1,
+        urlPath: '/',
+      },
+    },
+    `首页`,
+  )
+
+  for (let i = 1; i < pageCount; i++) {
     await generateHtmlFromTemplate(
       path.join(THEME_LAYOUT_PATH, 'page', 'index.ejs'),
-      i === 0
-        ? path.join(OUTPUT_PATH, 'index.html')
-        : path.join(OUTPUT_PATH, 'page', `${i + 1}`, 'index.html'),
+      path.join(OUTPUT_PATH, 'page', `${i + 1}`, 'index.html'),
       {
         siteTitle: themeConfig.site.title,
         posts: issues.slice(
@@ -120,7 +134,7 @@ async function generatePage(data_issues) {
           urlPath: '/',
         },
       },
-      `首页${i === 0 ? '' : ' - ' + (i + 1)}`,
+      `首页${' - ' + (i + 1)}`,
     )
   }
 }
