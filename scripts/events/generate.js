@@ -43,6 +43,8 @@ export default function (fluxpress) {
     await generateAbout()
     await generate404()
 
+    await generateCNAME()
+
     await fs.copy(THEME_SOURCE_PATH, OUTPUT_PATH)
   })
 }
@@ -298,4 +300,14 @@ async function generate404() {
     },
     '404 Not Fount',
   )
+}
+
+async function generateCNAME() {
+  if (themeConfig.site.cname) {
+    await fs.writeFile(
+      path.join(OUTPUT_PATH, 'CNAME'),
+      themeConfig.site.cname,
+      'utf-8',
+    )
+  }
 }

@@ -7,6 +7,7 @@ export interface ThemeConfig extends ThemeConfigBase {
     copyright: string
     author: string
     ipc?: string
+    cname?: string
   }
   per_page: number
 }
